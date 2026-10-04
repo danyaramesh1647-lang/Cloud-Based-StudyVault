@@ -1,0 +1,248 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sun: #ffd23f;
+  --butter: #fff3b0;
+  --cream: #fffaf0;
+  --brown: #5c4033;
+  --heart: #ff8fa3;
+  --blush: #ffd9e0;
+  --leaf: #e3f2c1;
+  --muted: #9a8478;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  color: var(--brown);
+  background-color: var(--cream);
+  background-image: radial-gradient(#f3dd9a 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  min-height: 100vh;
+}
+
+/* corner sunflowers */
+body::before, body::after {
+  position: fixed;
+  font-size: 90px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+body::before { content: "🌻"; left: -18px; bottom: -14px; transform: rotate(-12deg); }
+body::after { content: "🌻"; right: -18px; top: 80px; transform: rotate(14deg); }
+
+/* ---------- INPUTS & BUTTONS ---------- */
+input, select, textarea {
+  padding: 12px 14px;
+  border: 2px solid var(--brown);
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--brown);
+  background: #fff;
+  outline: none;
+  width: 100%;
+}
+input::placeholder, textarea::placeholder { color: #c4ad9f; }
+input:focus, select:focus, textarea:focus {
+  background: var(--butter);
+  box-shadow: 3px 3px 0 var(--sun);
+}
+textarea { resize: vertical; min-height: 120px; }
+
+button {
+  padding: 11px 18px;
+  border: 2px solid var(--brown);
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--brown);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--brown);
+  transition: 0.15s;
+}
+button:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--brown); }
+button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--brown); }
+
+/* ---------- AUTH PAGES ---------- */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--butter);
+  background-image:
+    linear-gradient(90deg, rgba(255, 210, 63, 0.45) 50%, transparent 50%),
+    linear-gradient(rgba(255, 210, 63, 0.45) 50%, transparent 50%);
+  background-size: 44px 44px;
+}
+.auth-card {
+  position: relative;
+  background: var(--cream);
+  border: 3px solid var(--brown);
+  border-radius: 28px;
+  box-shadow: 8px 8px 0 var(--brown);
+  padding: 56px 32px 32px;
+  width: 100%;
+  max-width: 390px;
+  text-align: center;
+  z-index: 1;
+}
+.auth-card::before {
+  content: "🌻";
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 62px;
+}
+.auth-card h1 { font-family: "Caveat", cursive; font-size: 44px; line-height: 1; }
+.auth-card p { color: var(--muted); font-weight: 600; margin: 6px 0 20px; }
+.auth-card form { display: flex; flex-direction: column; gap: 12px; }
+.auth-card button { margin-top: 6px; padding: 13px; }
+.auth-card .switch { margin: 18px 0 0; font-size: 14px; }
+.auth-card a { color: #d9467a; font-weight: 700; text-decoration: none; }
+.auth-card a:hover { text-decoration: underline wavy; }
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 28px;
+  background: var(--sun);
+  border-bottom: 3px solid var(--brown);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo { font-family: "Caveat", cursive; font-size: 34px; font-weight: 700; }
+.search-box { flex: 1; max-width: 360px; border-radius: 999px; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+#userName { font-weight: 700; background: var(--cream); border: 2px solid var(--brown); border-radius: 999px; padding: 6px 14px; }
+.btn-logout { background: var(--blush); padding: 8px 16px; }
+
+/* ---------- DASHBOARD ---------- */
+.container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 28px 20px 100px; }
+.welcome { font-family: "Caveat", cursive; font-size: 46px; margin-bottom: 14px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.chip { background: #fff; padding: 7px 16px; font-size: 14px; box-shadow: 2px 2px 0 var(--brown); }
+.chip.active { background: var(--heart); color: #fff; }
+.chip.active::before { content: "♥ "; }
+
+.section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.section-head h2 { font-family: "Caveat", cursive; font-size: 34px; }
+
+/* sticky notes */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 26px; padding-top: 8px; }
+.note-card {
+  position: relative;
+  border: 2px solid var(--brown);
+  border-radius: 6px 6px 22px 6px;
+  padding: 24px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 5px 5px 0 var(--brown);
+  transition: 0.2s;
+}
+.note-card:nth-child(4n+1) { background: var(--butter); transform: rotate(-1.2deg); }
+.note-card:nth-child(4n+2) { background: var(--blush); transform: rotate(1deg); }
+.note-card:nth-child(4n+3) { background: var(--leaf); transform: rotate(-0.6deg); }
+.note-card:nth-child(4n+4) { background: #fff; transform: rotate(1.3deg); }
+.note-card:hover { transform: rotate(0deg) translateY(-4px); }
+
+/* washi tape */
+.note-card::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 78px;
+  height: 22px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: repeating-linear-gradient(45deg, rgba(255,143,163,.65) 0 8px, rgba(255,255,255,.55) 8px 16px);
+  border-radius: 3px;
+}
+
+.tag {
+  align-self: flex-start;
+  background: #fff;
+  border: 1.5px solid var(--brown);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+.tag::before { content: "♡ "; color: #e0446d; }
+.note-card h3 { font-family: "Caveat", cursive; font-size: 28px; line-height: 1.1; }
+.note-card p { font-size: 14px; font-weight: 600; white-space: pre-wrap; max-height: 90px; overflow: hidden; }
+.note-card .date { font-size: 12px; color: var(--muted); font-weight: 700; }
+.card-actions { display: flex; gap: 8px; margin-top: 6px; }
+.card-actions button { padding: 5px 14px; font-size: 13px; box-shadow: 2px 2px 0 var(--brown); }
+.btn-edit { background: #fff; }
+.btn-delete { background: var(--heart); color: #fff; }
+
+.empty { color: var(--muted); font-weight: 700; padding: 18px 0; }
+.empty::before { content: "🌱 "; }
+
+/* ---------- RESOURCES ---------- */
+.resources-section { margin-top: 48px; }
+.resource-form { display: grid; grid-template-columns: 1fr 1.4fr 150px auto; gap: 10px; margin-bottom: 18px; }
+.resource-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.resource-item {
+  background: #fff;
+  border: 2px solid var(--brown);
+  border-radius: 16px;
+  padding: 11px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 3px 3px 0 var(--sun);
+}
+.resource-item span::before { content: "💛 "; }
+.resource-item a { color: var(--brown); font-weight: 700; text-decoration: underline wavy var(--heart); text-underline-offset: 4px; }
+.resource-item small { color: var(--muted); font-weight: 700; margin-left: 8px; }
+.resource-item button { padding: 4px 10px; }
+
+/* ---------- FLOATING BUTTON + MODAL ---------- */
+.fab { position: fixed; right: 28px; bottom: 28px; padding: 14px 24px; font-size: 16px; z-index: 20; }
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(92, 64, 51, 0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+}
+.modal.show { display: flex; }
+.modal-box {
+  background: var(--butter);
+  border: 3px solid var(--brown);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 var(--brown);
+  padding: 26px;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal-box h2 { font-family: "Caveat", cursive; font-size: 36px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.btn-cancel { background: #fff; }
+
+@media (max-width: 700px) {
+  .resource-form { grid-template-columns: 1fr; }
+  .search-box { display: none; }
+  .welcome { font-size: 36px; }
+}
